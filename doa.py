@@ -6,7 +6,7 @@ import time
 import socket
 
 HOST = '127.0.0.1'
-PORT = 10000
+PORT = 10100
 
 dev = usb.core.find(idVendor=0x2886, idProduct=0x0018)
 #print dev
@@ -20,9 +20,8 @@ if dev:
     while True:
         try:
             text= str.format('{},{}',Mic_tuning.direction, Mic_tuning.is_voice())
-            print( text )
             sock.sendto( bytes(text,'utf-8'), (HOST, PORT) )
-            time.sleep(1)
+            time.sleep(0.05)
         except KeyboardInterrupt:
             print('Ctrl+C')
             break
