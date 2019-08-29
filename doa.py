@@ -10,8 +10,11 @@ HOST = '127.0.0.1'
 PORT = 10100
 
 dev = usb.core.find(idVendor=0x2886, idProduct=0x0018)
-#print dev
-if dev:
+
+if dev is None:
+    print("Device not found.")
+
+else:
     Mic_tuning = Tuning(dev)
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
